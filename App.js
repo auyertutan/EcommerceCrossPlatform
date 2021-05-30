@@ -10,6 +10,7 @@ import { TabBarLabel } from "./src/components/TabBarLabel";
 import { TabBarIcon } from "./src/components/TabBarIcon";
 import { ProductProvider } from "./src/context/Product";
 import { CategoryProvider } from "./src/context/Category";
+import AddCategory from "./src/screens/Categories/AddCategory";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -58,6 +59,11 @@ function CategoriesStacks() {
         name="EditCategory"
         options={HeaderStyle}
         component={EditCategory}
+      />
+      <CategoriesStack.Screen
+        name="AddCategory"
+        options={HeaderStyle}
+        component={AddCategory}
       />
     </CategoriesStack.Navigator>
   );

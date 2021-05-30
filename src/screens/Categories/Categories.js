@@ -56,8 +56,10 @@ function Categories({ navigation }) {
         {renderCategories()}
       </ScrollView>
       <FloatingAction
-        onPressItem={name => {
-          console.log(`selected button: ${name}`);
+        onPressMain={() => {
+          navigation.navigate({
+            name: "AddCategory",
+          });
         }}
       />
     </View>

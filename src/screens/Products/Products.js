@@ -31,7 +31,7 @@ function Products({ navigation }) {
   const renderProducts = () => {
     return products.map((l, i) => (
       <ListItem key={i} bottomDivider>
-        <Text style={{ color: '#00B355', fontSize: 20 }}>{"$" + l.unitPrice}</Text>
+        <Text style={{ color: '#00B355', fontSize: 16 }}>{"$" + Math.floor(l.unitPrice)}</Text>
         <ListItem.Content>
           <ListItem.Title>{l.name}</ListItem.Title>
           <ListItem.Subtitle>{l.quantityPerUnit}</ListItem.Subtitle>
