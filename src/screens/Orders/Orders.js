@@ -5,7 +5,6 @@ import sortByDate from "../../functions/SortByDate";
 import { ListItem, Avatar } from 'react-native-elements'
 
 function Orders({ navigation }) {
-
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -34,7 +33,7 @@ function Orders({ navigation }) {
       <ListItem key={i} bottomDivider>
         <Avatar source={{ uri: l.avatar_url }} />
         <ListItem.Content>
-          <ListItem.Title>{l.customerId + "-> " + calculateTotalPrice(l.details) + " $"}</ListItem.Title>
+          <ListItem.Title>{l.customerId + "-> $" + calculateTotalPrice(l.details)}</ListItem.Title>
           <ListItem.Subtitle>{l.shipAddress.city + ', ' + l.shipAddress.street}</ListItem.Subtitle>
         </ListItem.Content>
         <Text style={{ color: '#00B355' }}>{l.orderDate.split(' ')[0]}</Text>
