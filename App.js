@@ -7,6 +7,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { TabBarLabel } from "./src/components/TabBarLabel";
 import { TabBarIcon } from "./src/components/TabBarIcon";
+import { ProductProvider } from "./src/context/Product";
+import { CategoryProvider } from "./src/context/Category";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -17,7 +19,7 @@ const OrdersStack = createStackNavigator();
 const HeaderStyle = {
   headerStyle: {
     backgroundColor: '#212A39',
-    borderColor:'blue'
+    borderColor: 'blue'
   },
   headerTitleStyle: {
     color: '#00B355',
@@ -68,10 +70,10 @@ function OrdersStacks() {
   );
 }
 
-function TabStacks() {
+function NavStacks() {
   return (
     <Tab.Navigator
-    tabBarOptions={{ activeBackgroundColor: '#212A39', inactiveBackgroundColor: '#212A39' }}
+      tabBarOptions={{ activeBackgroundColor: '#212A39', inactiveBackgroundColor: '#212A39' }}
     >
       <Tab.Screen
         name="Products"
@@ -104,13 +106,17 @@ function TabStacks() {
 export default function App() {
   return (
     <NavigationContainer>
+      <CategoryProvider>
+        <ProductProvider>
           <Stack.Navigator>
             <Stack.Screen
-              name="Tab"
-              component={TabStacks}
+              name="Nav"
+              component={NavStacks}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
+        </ProductProvider>
+      </CategoryProvider>
     </NavigationContainer>
   );
 }
