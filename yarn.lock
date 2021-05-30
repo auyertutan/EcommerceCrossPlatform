@@ -5190,6 +5190,18 @@ react-native-elements@^3.4.1:
     react-native-ratings "^7.3.0"
     react-native-size-matters "^0.3.1"
 
+react-native-fab@^1.0.17:
+  version "1.0.17"
+  resolved "https://registry.yarnpkg.com/react-native-fab/-/react-native-fab-1.0.17.tgz#3349fa9ef86358e67dd752ff583f584c4878c495"
+  integrity sha512-1zfjAKrE/wiY2wKxCABNpmCbRX0L4NWEv10cANwVdmI1ZqO+I1Gk0AuMmNPUhUkxO3DZyP2q/GJKFf7+d2Rkbg==
+  dependencies:
+    prop-types "^15.6.0"
+
+react-native-floating-action@^1.21.0:
+  version "1.21.0"
+  resolved "https://registry.yarnpkg.com/react-native-floating-action/-/react-native-floating-action-1.21.0.tgz#cb1e8349fec5b9aed06c8053c07372822c64b22f"
+  integrity sha512-ozd/iaJunrEYc4eGUWkP+4UI8yoIL0nQsToI3hnJRste/3LPhBkyu0eG3RTjc6aFY+q++JpRmgO469Ck8jJOwg==
+
 react-native-gesture-handler@^1.6.0:
   version "1.10.3"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.10.3.tgz#942bbf2963bbf49fa79593600ee9d7b5dab3cfc0"

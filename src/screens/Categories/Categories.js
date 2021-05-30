@@ -6,6 +6,8 @@ import sortByKey from "../../functions/SortByKey";
 import { ListItem } from 'react-native-elements'
 import { FontAwesome } from '@expo/vector-icons';
 import deleteFromList from "../../functions/DeleteFromList";
+import { FloatingAction } from "react-native-floating-action";
+
 
 function Categories({ navigation }) {
   const [categories, setCategories] = useContext(CategoryContext);
@@ -36,7 +38,14 @@ function Categories({ navigation }) {
           <ListItem.Subtitle>{l.description}</ListItem.Subtitle>
         </ListItem.Content>
         <FontAwesome onPress={() => deleteCategory(l.id)} name={"trash"} size={20} color={'#00B355'} />
-        <FontAwesome onPress={() => deleteCategory(l.id)} name={"pencil"} size={20} color={'#212A39'} />
+        <FontAwesome onPress={() => {
+          navigation.navigate({
+            name: "EditCategory",
+            params: {
+              category: l,
+            },
+          });
+        }} name={"pencil"} size={20} color={'#212A39'} />
       </ListItem>
     ))
   }
@@ -46,6 +55,11 @@ function Categories({ navigation }) {
       <ScrollView>
         {renderCategories()}
       </ScrollView>
+      <FloatingAction
+        onPressItem={name => {
+          console.log(`selected button: ${name}`);
+        }}
+      />
     </View>
   );
 }

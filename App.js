@@ -1,5 +1,6 @@
 import React from "react";
 import Categories from "./src/screens/Categories/Categories";
+import EditCategory from "./src/screens/Categories/EditCategory";
 import Products from "./src/screens/Products/Products";
 import Orders from "./src/screens/Orders/Orders";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -25,6 +26,7 @@ const HeaderStyle = {
     color: '#00B355',
   },
   headerLayoutPreset: 'center',
+  headerTintColor: '#ffffff',
   headerTitleAlign: "center",
 };
 
@@ -51,6 +53,11 @@ function CategoriesStacks() {
         name="Categories"
         options={HeaderStyle}
         component={Categories}
+      />
+      <CategoriesStack.Screen
+        name="EditCategory"
+        options={HeaderStyle}
+        component={EditCategory}
       />
     </CategoriesStack.Navigator>
   );
