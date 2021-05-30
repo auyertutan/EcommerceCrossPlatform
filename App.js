@@ -11,6 +11,7 @@ import { TabBarIcon } from "./src/components/TabBarIcon";
 import { ProductProvider } from "./src/context/Product";
 import { CategoryProvider } from "./src/context/Category";
 import AddCategory from "./src/screens/Categories/AddCategory";
+import DetailProduct from "./src/screens/Products/DetailProduct";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -40,6 +41,11 @@ function ProductsStacks() {
         name="Products"
         options={HeaderStyle}
         component={Products}
+      />
+      <ProductsStack.Screen
+        name="DetailProduct"
+        options={HeaderStyle}
+        component={DetailProduct}
       />
     </ProductsStack.Navigator>
   );

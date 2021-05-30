@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { StyleSheet, View, Text, ScrollView } from "react-native";
 import { ProductContext } from "../../context/Product";
 import fetchData from "../../functions/Fetch";
@@ -6,8 +6,10 @@ import sortByKey from "../../functions/SortByKey";
 import { ListItem } from 'react-native-elements'
 import { FontAwesome } from '@expo/vector-icons';
 import deleteFromList from "../../functions/DeleteFromList";
+import { Spinner } from "../../components/Spinner";
 
 function Products({ navigation }) {
+  const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useContext(ProductContext);
 
   useEffect(() => {
@@ -19,6 +21,7 @@ function Products({ navigation }) {
     const productList = sortByKey(response, 'id');
 
     setProducts(productList);
+    setIsLoading(false);
   };
 
   const deleteProduct = async (id) => {
@@ -30,7 +33,15 @@ function Products({ navigation }) {
 
   const renderProducts = () => {
     return products.map((l, i) => (
-      <ListItem key={i} bottomDivider>
+      <ListItem key={i} bottomDivider
+        onPress={() => {
+          navigation.navigate({
+            name: 'DetailProduct',
+            params: {
+              id: l.id,
+            },
+          });
+        }}>
         <Text style={{ color: '#00B355', fontSize: 16 }}>{"$" + Math.floor(l.unitPrice)}</Text>
         <ListItem.Content>
           <ListItem.Title>{l.name}</ListItem.Title>
@@ -40,20 +51,23 @@ function Products({ navigation }) {
       </ListItem>
     ))
   }
-
-  return (
-    <View style={styles.container}>
-      <ScrollView>
-        {renderProducts()}
-      </ScrollView>
-    </View>
-  );
+  if (isLoading === true) {
+    return <Spinner />
+  } else {
+    return (
+      <View style={styles.container}>
+        <ScrollView>
+          {renderProducts()}
+        </ScrollView>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#1A2430",
+    backgroundColor: "white",
   },
 });
 

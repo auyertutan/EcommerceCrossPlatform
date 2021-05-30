@@ -3,9 +3,11 @@ import { StyleSheet, View, Text, ScrollView } from "react-native";
 import fetchData from "../../functions/Fetch";
 import sortByDate from "../../functions/SortByDate";
 import { ListItem, Avatar } from 'react-native-elements'
+import { Spinner } from "../../components/Spinner";
 
 function Orders({ navigation }) {
   const [orders, setOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getOrders();
@@ -16,7 +18,8 @@ function Orders({ navigation }) {
     const orderList = sortByDate(response, 'orderDate');
 
     setOrders(orderList);
-    console.log(orders)
+    console.log(orders);
+    setIsLoading(false);
   };
 
   const calculateTotalPrice = (products) => {
@@ -41,13 +44,17 @@ function Orders({ navigation }) {
     ))
   }
 
-  return (
-    <View style={styles.container}>
+  if (isLoading === true) {
+    return <Spinner />
+  } else {
+    return (<View style={styles.container}>
       <ScrollView>
         {renderList()}
       </ScrollView>
-    </View>
-  );
+    </View>)
+  }
+
+
 }
 
 const styles = StyleSheet.create({

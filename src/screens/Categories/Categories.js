@@ -1,5 +1,5 @@
-import React, { useEffect, useContext } from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import React, { useEffect, useContext, useState } from "react";
+import { StyleSheet, View, ScrollView } from "react-native";
 import { CategoryContext } from "../../context/Category";
 import fetchData from "../../functions/Fetch";
 import sortByKey from "../../functions/SortByKey";
@@ -7,9 +7,11 @@ import { ListItem } from 'react-native-elements'
 import { FontAwesome } from '@expo/vector-icons';
 import deleteFromList from "../../functions/DeleteFromList";
 import { FloatingAction } from "react-native-floating-action";
+import { Spinner } from "../../components/Spinner";
 
 
 function Categories({ navigation }) {
+  const [isLoading, setIsLoading] = useState(true);
   const [categories, setCategories] = useContext(CategoryContext);
 
   useEffect(() => {
@@ -21,6 +23,7 @@ function Categories({ navigation }) {
     const categoryList = sortByKey(response, 'id');
 
     setCategories(categoryList);
+    setIsLoading(false);
   };
 
   const deleteCategory = async (id) => {
@@ -50,20 +53,24 @@ function Categories({ navigation }) {
     ))
   }
 
-  return (
-    <View style={styles.container}>
-      <ScrollView>
-        {renderCategories()}
-      </ScrollView>
-      <FloatingAction
-        onPressMain={() => {
-          navigation.navigate({
-            name: "AddCategory",
-          });
-        }}
-      />
-    </View>
-  );
+  if (isLoading === true) {
+    return <Spinner />
+  } else {
+    return (
+      <View style={styles.container}>
+        <ScrollView>
+          {renderCategories()}
+        </ScrollView>
+        <FloatingAction
+          onPressMain={() => {
+            navigation.navigate({
+              name: "AddCategory",
+            });
+          }}
+        />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
