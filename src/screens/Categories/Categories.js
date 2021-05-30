@@ -1,8 +1,11 @@
 import React, { useEffect, useContext } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, ScrollView } from "react-native";
 import { CategoryContext } from "../../context/Category";
 import fetchData from "../../functions/Fetch";
 import sortByKey from "../../functions/SortByKey";
+import { ListItem } from 'react-native-elements'
+import { FontAwesome } from '@expo/vector-icons';
+import deleteFromList from "../../functions/DeleteFromList";
 
 function Categories({ navigation }) {
   const [categories, setCategories] = useContext(CategoryContext);
@@ -18,9 +21,31 @@ function Categories({ navigation }) {
     setCategories(categoryList);
   };
 
+  const deleteCategory = async (id) => {
+    await fetchData('https://northwind.vercel.app/api/categories/' + id, "DELETE");
+    const newCategoryList = deleteFromList(categories, 'id', id);
+
+    setCategories(newCategoryList);
+  };
+
+  const renderCategories = () => {
+    return categories.map((l, i) => (
+      <ListItem key={i} bottomDivider>
+        <ListItem.Content>
+          <ListItem.Title>{l.name}</ListItem.Title>
+          <ListItem.Subtitle>{l.description}</ListItem.Subtitle>
+        </ListItem.Content>
+        <FontAwesome onPress={() => deleteCategory(l.id)} name={"trash"} size={20} color={'#00B355'} />
+        <FontAwesome onPress={() => deleteCategory(l.id)} name={"pencil"} size={20} color={'#212A39'} />
+      </ListItem>
+    ))
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Categories</Text>
+      <ScrollView>
+        {renderCategories()}
+      </ScrollView>
     </View>
   );
 }
@@ -28,7 +53,7 @@ function Categories({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#1A2430",
+    backgroundColor: "white",
   },
 });
 
