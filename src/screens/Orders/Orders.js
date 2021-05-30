@@ -4,9 +4,7 @@ import { StyleSheet, View, Text } from "react-native";
 function Orders({ navigation }) {
 
   useEffect(() => {
-
   }, []);
-
 
   return (
     <View style={styles.container}>

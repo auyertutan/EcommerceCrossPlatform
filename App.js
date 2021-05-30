@@ -5,6 +5,8 @@ import Orders from "./src/screens/Orders/Orders";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+import { TabBarLabel } from "./src/components/TabBarLabel";
+import { TabBarIcon } from "./src/components/TabBarIcon";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -74,14 +76,26 @@ function TabStacks() {
       <Tab.Screen
         name="Products"
         component={ProductsStacks}
+        options={{
+          tabBarLabel: ({ focused }) => <TabBarLabel title={'Products'} focused={focused} />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} iconName={'list-ul'} />,
+        }}
       />
       <Tab.Screen
         name="Categories"
         component={CategoriesStacks}
+        options={{
+          tabBarLabel: ({ focused }) => <TabBarLabel title={'Categories'} focused={focused} />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} iconName={'cutlery'} />,
+        }}
       />
       <Tab.Screen
         name="Orders"
         component={OrdersStacks}
+        options={{
+          tabBarLabel: ({ focused }) => <TabBarLabel title={'Orders'} focused={focused} />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} iconName={'first-order'} />,
+        }}
       />
     </Tab.Navigator>
   );
