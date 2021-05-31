@@ -42,7 +42,7 @@ function AddCategory({ navigation }) {
           placeholder="Description"
         />
         <TouchableOpacity onPress={() => editCategory()} style={styles.updateButton}>
-          <Text style={styles.buttonText}>Update</Text>
+          <Text style={styles.buttonText}>Add</Text>
         </TouchableOpacity>
       </View>
       <View style={{ flex: 1 }} />
@@ -57,8 +57,9 @@ const styles = StyleSheet.create({
   },
   updateButton: {
     width: 200,
-    height: 50,
+    height: 40,
     borderRadius: 8,
+    marginTop:10,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#00B355'

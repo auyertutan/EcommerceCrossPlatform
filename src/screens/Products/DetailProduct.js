@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Spinner } from "../../components/Spinner";
 import fetchData from "../../functions/Fetch";
 
 function DetailProduct({ navigation, ...params }) {
   const [product, setProduct] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  
+
   useEffect(() => {
     navigation.setOptions({
       title: "Product Detail",
@@ -31,7 +31,7 @@ function DetailProduct({ navigation, ...params }) {
     let keys = Object.keys(product);
 
     return (keys || []).map((item, index) => (
-      <View style={styles.textContainer}>
+      <View key={index} style={styles.textContainer}>
         <View style={styles.itemView}>
           <View style={{ flex: .4 }}>
             <Text style={styles.label}>{camelCaseToNormalCase(item)}: </Text>
@@ -65,8 +65,8 @@ const styles = StyleSheet.create({
   },
   itemView: {
     flexDirection: 'row',
-    justifyContent:'center',
-    alignItems:'center',
+    justifyContent: 'center',
+    alignItems: 'center',
     margin: 10
   },
   label: {

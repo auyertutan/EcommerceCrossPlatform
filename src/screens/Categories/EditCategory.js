@@ -53,8 +53,9 @@ const styles = StyleSheet.create({
   },
   updateButton: {
     width: 200,
-    height: 50,
+    height: 40,
     borderRadius: 8,
+    marginTop:10,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#00B355'
