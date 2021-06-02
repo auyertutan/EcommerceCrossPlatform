@@ -32,7 +32,7 @@ function Products({ navigation }) {
   };
 
   const renderProducts = () => {
-    return products.map((l, i) => (
+    return (products || []).map((l, i) => (
       <ListItem key={i} bottomDivider
         onPress={() => {
           navigation.navigate({

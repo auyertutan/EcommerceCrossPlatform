@@ -5,14 +5,10 @@ import fetchDataWithBody from "../../functions/FetchWithBody";
 
 function EditCategory({ navigation, ...params }) {
 
-  const [category, setCategory] = useState(
-    params.route.params.category
-  );
+  const [category, setCategory] = useState(params.route.params.category);
 
   useEffect(() => {
-    navigation.setOptions({
-      title: "Edit Category",
-    })
+    navigation.setOptions({ title: "Edit Category" })
   }, [])
 
   const editCategory = async () => {

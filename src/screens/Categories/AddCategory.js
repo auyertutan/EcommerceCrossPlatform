@@ -15,12 +15,8 @@ function AddCategory({ navigation }) {
   }, [])
 
   const editCategory = async () => {
-    const category = {
-      description,
-      name
-    }
-
-    await fetchDataWithBody('https://northwind.vercel.app/api/categories', "POST", JSON.stringify(category));
+    await fetchDataWithBody('https://northwind.vercel.app/api/categories', "POST", JSON.stringify({ description,name }));
+   
     navigation.reset({
       index: 0,
       routes: [{ name: 'Categories' }],

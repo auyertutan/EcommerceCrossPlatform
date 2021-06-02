@@ -32,7 +32,7 @@ function Orders({ navigation }) {
   }
 
   const renderList = () => {
-    return orders.map((l, i) => (
+    return (orders || []).map((l, i) => (
       <ListItem key={i} bottomDivider>
         <Avatar source={{ uri: l.avatar_url }} />
         <ListItem.Content>
